@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кибергид · 5 правил цифровой безопасности</title>
+  <!-- Подключаем шрифт Inter и Space Grotesk для современного вида -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (иконки) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Сброс и базовые настройки */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f1c;
+      background-image: radial-gradient(circle at 10% 20%, rgba(90, 60, 190, 0.15) 0%, transparent 30%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 200, 255, 0.1) 0%, transparent 35%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #eef2fb;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .cyber-card {
+      max-width: 1300px;
+      width: 100%;
+      background: rgba(18, 25, 45, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(100, 210, 255, 0.2);
+      border-radius: 3.5rem;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 40px 60px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
+    }
+
+    /* Заголовок */
+    .title-section {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .title-section h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 600;
+      background: linear-gradient(145deg, #a0e9ff, #5f9eff, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px rgba(0,160,255,0.3);
+    }
+
+    .title-section .sub {
+      font-size: 1.2rem;
+      color: #9bb5d4;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 400;
+      border-bottom: 1px dashed #2e4b6e;
+      padding-bottom: 0.8rem;
+      display: inline-block;
+    }
+
+    /* Сетка правил */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 1rem;
+    }
+
+    /* Карточка-правило */
+    .rule-item {
+      background: rgba(12, 20, 35, 0.7);
+      border-radius: 2.5rem;
+      padding: 2.2rem 1.8rem;
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.7);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rule-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(64, 224, 255, 0.1), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .rule-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(0, 230, 255, 0.5);
+      box-shadow: 0 30px 45px -12px #005f8a, 0 0 0 2px rgba(0, 255, 255, 0.2) inset;
+    }
+
+    .rule-item:hover::before {
+      opacity: 1;
+    }
+
+    /* Шапка карточки: номер + иконка */
+    .rule-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .rule-number {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(145deg, #56ccf2, #2f80ed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.9;
+      letter-spacing: -2px;
+    }
+
+    .rule-icon {
+      font-size: 2.2rem;
+      width: 3.2rem;
+      height: 3.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 255, 255, 0.08);
+      border-radius: 1.2rem;
+      color: #4dd0ff;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      transition: 0.2s;
+    }
+
+    .rule-item:hover .rule-icon {
+      color: #fff;
+      background: #00b8ff;
+      border-color: #00ffff;
+      box-shadow: 0 0 20px #00b8ff;
+    }
+
+    /* Текст правила */
+    .rule-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .rule-description {
+      color: #b0c9e8;
+      font-size: 1rem;
+      font-weight: 400;
+      border-left: 3px solid #2f9eff;
+      padding-left: 1rem;
+      margin-top: 0.8rem;
+      transition: 0.2s;
+    }
+
+    .rule-item:hover .rule-description {
+      color: #d3e5ff;
+      border-left-color: #0ff;
+    }
+
+    /* Доп. микро-эффект */
+    .glow-text {
+      color: #8ec9ff;
+    }
+
+    /* Футер */
+    .footer-note {
+      text-align: center;
+      margin-top: 3.5rem;
+      font-size: 0.95rem;
+      color: #5f7f9f;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      border-top: 1px solid #1e3855;
+      padding-top: 2rem;
+    }
+
+    .footer-note span i {
+      color: #3ab4ff;
+      margin-right: 0.5rem;
+    }
+
+    /* Адаптация */
+    @media (max-width: 700px) {
+      .cyber-card {
+        padding: 2rem 1.5rem;
+        border-radius: 2.5rem;
+      }
+      .title-section h1 {
+        font-size: 2.2rem;
+      }
+      .rule-header {
+        gap: 0.7rem;
+      }
+      .rule-number {
+        font-size: 2.3rem;
+      }
+      .rule-title {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rules-grid {
+        gap: 1.5rem;
+      }
+      .rule-item {
+        padding: 1.8rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cyber-card">
+    <div class="title-section">
+      <h1>⚡ БИ | Безопасный Интернет ⚡</h1>
+      <div class="sub">5 неочевидных, но критических привычек</div>
+    </div>
+
+    <div class="rules-grid">
+      <!-- Правило 1: Менеджер паролей + уникальность -->
+      <div class="rule-item">
+        <div class="rule-header">
+          <span class="rule-number">01</span>
+          <div class="rule-icon"><i class="fa-solid fa-lock"></i></div>
+        </div>
+        <h3 class="rule-title">Уникальная криптостойкость</h3>
+        <div class="rule-description">
+          Никаких повторных паролей. Используйте генераторы случайных последовательностей и доверьте их менеджеру паролей (Bitwarden, 1Password). Сложный пароль = цифровая подпись.
+        </div>
+      </div>
+
+      <!-- Правило 2: 2FA не по SMS -->
+      <div class="rule-item">
+        <div class="rule-header">
+          <span class="rule-number">02</span>
+          <div class="rule-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        </div>
+        <h3 class="rule-title">Двухфакторка без сим-карты</h3>
+        <div class="rule-description">
+          Приложения‑аутентификаторы (Google Authenticator, Aegis) или аппаратные ключи (YubiKey) надёжнее SMS. Даже если перевыпустят сим-карту, ваш аккаунт останется закрытым.
+        </div>
+      </div>
+
+      <!-- Правило 3: Фишинг — внимание к деталям -->
+      <div class="rule-item">
+        <div class="rule-header">
+          <span class="rule-number">03</span>
+          <div class="rule-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        </div>
+        <h3 class="rule-title">Читай URL, как детектив</h3>
+        <div class="rule-description">
+          Мошенники маскируются под известные бренды (g00gle.com, paypaI.com). Не кликай вслепую, наведи курсор, проверь домен. Никогда не вводи данные на подозрительных страницах.
+        </div>
+      </div>
+
+      <!-- Правило 4: Автообновление всего и вся -->
+      <div class="rule-item">
+        <div class="rule-header">
+          <span class="rule-number">04</span>
+          <div class="rule-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        </div>
+        <h3 class="rule-title">Обновления — это броня</h3>
+        <div class="rule-description">
+          Включи автоматическое обновление ОС, браузера, приложений. Патчи закрывают дыры, через которые проникают вирусы. Откладывать обновления = оставлять дверь открытой.
+        </div>
+      </div>
+
+      <!-- Правило 5: Цифровая гигиена данных -->
+      <div class="rule-item">
+        <div class="rule-header">
+          <span class="rule-number">05</span>
+          <div class="rule-icon"><i class="fa-solid fa-eye-slash"></i></div>
+        </div>
+        <h3 class="rule-title">Минимум личного в сети</h3>
+        <div class="rule-description">
+          Не выкладывай геолокацию дома, сканы документов, данные карт. Даже в закрытых аккаунтах. Чем меньше информации о вас в открытом доступе, тем сложнее социальная инженерия.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <span><i class="fa-regular fa-circle-check"></i> Безопасный интернет</span>
+      <span><i class="fa-regular fa-star"></i> Альметьевский политехнический техникум - 2026 г.</span>
+      <span><i class="fa-regular fa-bell"></i> Gudaerov R.A.</span>
+    </div>
+  </div>
+</body>
+</html>
